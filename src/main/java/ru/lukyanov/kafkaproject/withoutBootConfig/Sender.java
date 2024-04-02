@@ -3,7 +3,7 @@ public class Sender {
 
 	public static void main(String[] args) {
 		AnnotationConfigApplicationContext context = new AnnotationConfigApplicationContext(Config.class);
-		context.getBean(Sender.class).send("test", 42);
+		context.getBean(Sender.class).send("=== test ===", 42);
 	}
 
 	private final KafkaTemplate<Integer, String> template;
