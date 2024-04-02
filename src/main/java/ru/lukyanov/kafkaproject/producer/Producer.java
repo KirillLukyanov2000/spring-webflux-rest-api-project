@@ -20,14 +20,14 @@ public class Producer {
         return TopicBuilder
                 .name("demo-topic")
                 .partitions(10)
-                .replicas(1)
+                .replicas(2)
                 .build();
     }
 
     @Bean
     public ApplicationRunner runner(KafkaTemplate<String, String> template) {
         return args -> {
-            template.send("demo-topic", "test JavaRush" + System.currentTimeMillis());
+            template.send("demo-topic", "any test text will go as a message in this topic " + System.currentTimeMillis());
         };
     }
 
