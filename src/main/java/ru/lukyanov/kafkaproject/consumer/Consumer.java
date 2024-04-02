@@ -16,15 +16,15 @@ public class Consumer{
 
     @Bean
     public NewTopic topic() {
-        return TopicBuilder.name("topic1")
+        return TopicBuilder.name("demo-topic")
                 .partitions(10)
-                .replicas(1)
+                .replicas(2)
                 .build();
     }
 
-    @KafkaListener(id = "myId", topics = "demo-topic")
-    public void listen(String in) {
-        System.out.println(in);
+    @KafkaListener(id = "myConsumerId", topics = "demo-topic")
+    public void listen(String messageIn) {
+        System.out.println(messageIn);
     }
 
 }
