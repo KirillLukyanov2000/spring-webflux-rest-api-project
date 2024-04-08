@@ -1,3 +1,19 @@
+package ru.lukyanov.kafkaproject.withoutBootConfig;
+
+import org.apache.kafka.clients.consumer.ConsumerConfig;
+import org.apache.kafka.clients.producer.ProducerConfig;
+import org.apache.kafka.common.serialization.IntegerDeserializer;
+import org.apache.kafka.common.serialization.IntegerSerializer;
+import org.apache.kafka.common.serialization.StringDeserializer;
+import org.apache.kafka.common.serialization.StringSerializer;
+import org.springframework.context.annotation.Bean;
+import org.springframework.context.annotation.Configuration;
+import org.springframework.kafka.annotation.EnableKafka;
+import org.springframework.kafka.config.ConcurrentKafkaListenerContainerFactory;
+import org.springframework.kafka.core.*;
+
+import java.util.HashMap;
+import java.util.Map;
 
 @Configuration
 @EnableKafka
@@ -5,9 +21,9 @@ public class Config {
 
     @Bean
     ConcurrentKafkaListenerContainerFactory<Integer, String>
-                        kafkaListenerContainerFactory(ConsumerFactory<Integer, String> consumerFactory) {
+    kafkaListenerContainerFactory(ConsumerFactory<Integer, String> consumerFactory) {
         ConcurrentKafkaListenerContainerFactory<Integer, String> factory =
-                                new ConcurrentKafkaListenerContainerFactory<>();
+                new ConcurrentKafkaListenerContainerFactory<>();
         factory.setConsumerFactory(consumerFactory);
         return factory;
     }
@@ -55,7 +71,7 @@ public class Config {
 
     @Bean
     public KafkaTemplate<Integer, String> kafkaTemplate(ProducerFactory<Integer, String> producerFactory) {
-        return new KafkaTemplate<Integer, String>(producerFactory);
+        return new KafkaTemplate<>(producerFactory);
     }
 
 }
